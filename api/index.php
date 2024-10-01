@@ -124,21 +124,3 @@ if ($link !== null) {
         curl_close($ch_link);
         exit();
     }
-
-    // Close the cURL session for the link
-    curl_close($ch_link);
-
-    // Extract the base URL from the fetched link
-    $base_url = preg_replace('/\/[^\/]*$/', '/', $link); // This removes the last part after the last slash
-
-    // Prepend the base URL before every occurrence of 'JC_'
-    $modified_link_content = str_replace('JC_', $base_url . 'JC_', $link_content);
-
-    // Return the modified content
-    echo $modified_link_content;
-} else {
-    // Return an error if no channel was found with the given channel_id
-    header('Content-Type: application/json');
-    echo json_encode(["error" => "Channel not found"]);
-}
-?>
